@@ -15,7 +15,7 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
-        //Create Person
+        //Create PersonResource
         DB::table('person')->insert([
             'name' => 'Adam',
             'last_name' => 'Migacz',

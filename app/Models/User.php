@@ -56,11 +56,12 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'categoryAccess'
     ];
 
     public function categoryAccess()
     {
-        return $this->hasMany('App\Models\CategoryAccess');
+        return $this->hasMany('App\Models\CategoryAccess', 'users_id');
     }
 
     public function person()

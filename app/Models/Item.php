@@ -20,4 +20,9 @@ class Item extends Model
     {
         return $this->hasMany('App\Models\ItemCategory');
     }
+
+    public function person()
+    {
+        return $this->belongsTo('App\Models\Person');
+    }
 }
