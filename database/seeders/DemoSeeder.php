@@ -15,6 +15,22 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
+        //Create LocalizationResource
+        DB::table('localization')->insert([
+           'name' => 'Main Headquarter',
+            'city' => 'New York',
+            'street' => 'Central Park 11',
+            'code' => '310301',
+            'description' => 'The main headquarter',
+            'longitude' => '50.000',
+            'latitude' => '50.2213'
+        ]);
+        //Create sublocalization
+        DB::table('sub_localization')->insert([
+            'name' => 'Storage room 113',
+            'description' => 'Storage unit for IT stuff',
+            'localization_id' => 1
+        ]);
         //Create PersonResource
         DB::table('person')->insert([
             'name' => 'Adam',
@@ -64,7 +80,9 @@ class DemoSeeder extends Seeder
            'model' => 'Latitude 5570',
            'producer' => 'Dell',
            'person_id' => 1,
-           'inside_identifier' => '00001839'
+           'inside_identifier' => '00001839',
+            'localization_id' => 1,
+            'sub_localization_id' => 1
         ]);
 
         DB::table('item')->insert([
@@ -72,7 +90,9 @@ class DemoSeeder extends Seeder
             'model' => 'Latitude 5570',
             'producer' => 'Dell',
             'person_id' => 1,
-            'inside_identifier' => '00001840'
+            'inside_identifier' => '00001840',
+            'localization_id' => 1,
+            'sub_localization_id' => 1
         ]);
 
         DB::table('item')->insert([
@@ -80,7 +100,9 @@ class DemoSeeder extends Seeder
             'model' => 'Galaxy xCover ',
             'producer' => 'Samsung',
             'person_id' => 1,
-            'inside_identifier' => '00001841'
+            'inside_identifier' => '00001841',
+            'localization_id' => 1,
+            'sub_localization_id' => 1
         ]);
 
         //Create category

@@ -21,10 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CategoryAccess.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CategoryAccess.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +197,8 @@
       <updated>1599714995500</updated>
       <workItem from="1599714996773" duration="13248000" />
       <workItem from="1599805746181" duration="8752000" />
-      <workItem from="1600061383436" duration="4889000" />
+      <workItem from="1600061383436" duration="5035000" />
+      <workItem from="1600169434618" duration="2905000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -209,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599825188839</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Item and Person Resources for api calls.">
+      <created>1600085844869</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600085844869</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,16 +230,18 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Item and Person Resources for api calls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Item and Person Resources for api calls." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600083347821">
+    <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600172313190">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600083347821" />
+    <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600172313190" />
     <state x="-1106" y="158" key="Github.ShareDialog" timestamp="1599824985689">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
@@ -243,10 +250,10 @@
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1220" y="-35" key="Github.UntrackedFilesDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599824997643" />
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1599825263443">
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1600085901086">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599825263443" />
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600085901086" />
     <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599825230378">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>

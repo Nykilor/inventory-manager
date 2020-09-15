@@ -25,4 +25,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\Person');
     }
+
+    public function localization()
+    {
+        return $this->belongsTo('App\Models\Localization');
+    }
 }
