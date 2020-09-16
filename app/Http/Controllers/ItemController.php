@@ -14,14 +14,15 @@ class ItemController extends Controller
     public function index()
     {
         $user = Auth::user();
-        var_dump($user);
-        exit(); //todo add so that category names that the user can read are in Auth:user object
-        $access_restriction = CategoryAccess::with('category')->where('users_id', '=', $user->id)->get();
-        $user_accessible_categories = [];
-        foreach ($access_restriction as $category) {
-            $user_accessible_categories[] = $category->category->name;
-        }
-        $items = Item::with(['itemCategory', 'person'])->get();
+        $user_category_access = $user->getUserCategoryAccess('read');
+        $items = Item::with([
+            'person',
+            'localization',
+            'subLocalization',
+            'itemCategory'
+        ])->whereHas('itemCategory', function($query) use($user_category_access) {
+            $query->whereIn('id', $user_category_access);
+        })->get();
 
         return ItemResource::collection($items);
     }

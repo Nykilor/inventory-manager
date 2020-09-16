@@ -59,6 +59,11 @@ class User extends Authenticatable
         'categoryAccess'
     ];
 
+    public function getCategoryAccessAttribute()
+    {
+        return $this->categoryAccess()->get(['write', 'read', 'update', 'category_id']);
+    }
+
     public function categoryAccess()
     {
         return $this->hasMany('App\Models\CategoryAccess', 'users_id');
@@ -67,5 +72,24 @@ class User extends Authenticatable
     public function person()
     {
         return $this->hasOne('App\Models\Person');
+    }
+
+    /**
+     * Returns array of category_id's that the given user has the privilege to use given action on
+     * @param string $action Either value of [write, read, update]
+     * @return array
+     * @throws \Exception
+     */
+    public function getUserCategoryAccess(string $action = 'read') : array
+    {
+        if(!in_array($action, ['write', 'read', 'update']))
+        {
+            throw new \Exception("Only write, read or update parameter is accepted");
+        }
+        list($user_category_access) = $this->getCategoryAccessAttribute()->partition(function($entry) use($action) {
+            return $entry->$action;
+        });
+
+        return $user_category_access->pluck('category_id')->toArray();
     }
 }

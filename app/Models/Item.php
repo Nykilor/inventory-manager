@@ -30,4 +30,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\Localization');
     }
+
+    public function subLocalization()
+    {
+        return $this->belongsTo('App\Models\SubLocalization');
+    }
 }

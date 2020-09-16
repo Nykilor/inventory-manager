@@ -9,6 +9,8 @@ class Localization extends Model
 {
     use HasFactory;
 
+    protected $table = 'localization';
+
     public function item()
     {
         $this->hasMany('App\Models\Item');
