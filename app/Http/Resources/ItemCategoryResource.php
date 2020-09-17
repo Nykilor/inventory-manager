@@ -14,6 +14,6 @@ class ItemCategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->id;
+        return $this->category_id;
     }
 }

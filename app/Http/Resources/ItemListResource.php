@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ItemResource extends JsonResource
+class ItemListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,11 +19,11 @@ class ItemResource extends JsonResource
             'serial' => $this->serial,
             'model' => $this->model,
             'producer' => $this->producer,
-            'person' => PersonResource::make($this->person),
+            'person_id' => $this->person->id,
             'inside_identifier' => $this->inside_identifier,
-            'localization' => LocalizationResource::make($this->localization),
-            'sub_localization' => SubLocalizationResource::make($this->subLocalization),
-            'item_category' => ItemCategoryResource::collection($this->itemCategory)
+            'localization_id' => $this->localization->id,
+            'sub_localization_id' => $this->subLocalization->id,
+            'item_category_id' => ItemCategoryResource::collection($this->itemCategory)
         ];
     }
 }
