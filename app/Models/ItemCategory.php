@@ -11,6 +11,8 @@ class ItemCategory extends Model
 
     protected $table = 'item_category';
 
+    public $timestamps = false;
+
     public function item()
     {
         return $this->belongsTo('App\Models\Item');

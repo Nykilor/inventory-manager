@@ -7,6 +7,7 @@ use App\Http\Resources\ItemShowResurce;
 use App\Models\Category;
 use App\Models\CategoryAccess;
 use App\Models\Item;
+use App\Models\ItemCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,51 @@ class ItemController extends Controller
         ])->whereHas('itemCategory', function($query) use($user_category_access) {
             $query->whereIn('id', $user_category_access);
         })->where('id', '=', $id)->firstOrFail();
+
+        return ItemShowResurce::make($item);
+    }
+
+    public function store()
+    {
+        $user = Auth::user();
+        $user_category_access = $user->getUserCategoryAccess('write');
+        //Cast item_category_id string into array and validate
+        $this->request->merge(['item_category_id' => json_decode($this->request->get('item_category_id'))]);
+        //We use this to let Laravel handle if the user can write to given item_category_id by using in_array:user_category_id.*
+        $this->request->merge(['user_category_access' => $user_category_access]);
+        $validate_data = $this->request->validate([
+            'serial' => ['required', 'string'],
+            'model' => ['required', 'string'],
+            'producer' => ['required', 'string'],
+            'inside_identifier' => ['required', 'string'],
+            'localization_id' => ['required', 'numeric', 'exists:\App\Models\Localization,id'],
+            'sub_localization_id' => ['sometimes', 'numeric', 'exists:\App\Models\SubLocalization,id'],
+            'item_category_id' => ['required','array'],
+            'item_category_id.*' => ['numeric', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
+        ]);
+
+
+        $validate_data['person_id'] = $user->person_id;
+
+        $item = new Item();
+
+        foreach ($validate_data as $column => $value)
+        {
+            if($column !== 'item_category_id')
+            {
+                $item->$column = $value;
+            }
+        }
+
+        $item->save();
+
+        foreach ($validate_data['item_category_id'] as $value)
+        {
+            $item_category = new ItemCategory();
+            $item_category->category_id = $value;
+            $item_category->item_id = $item->id;
+            $item_category->save();
+        }
 
         return ItemShowResurce::make($item);
     }
