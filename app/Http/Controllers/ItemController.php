@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+    /**
+     * @var Request
+     */
+    public $request;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -74,10 +79,10 @@ class ItemController extends Controller
             'model' => ['required', 'string'],
             'producer' => ['required', 'string'],
             'inside_identifier' => ['required', 'string'],
-            'localization_id' => ['required', 'numeric', 'exists:\App\Models\Localization,id'],
-            'sub_localization_id' => ['sometimes', 'numeric', 'exists:\App\Models\SubLocalization,id'],
+            'localization_id' => ['required', 'bail', 'numeric', 'exists:\App\Models\Localization,id'],
+            'sub_localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\SubLocalization,id'],
             'item_category_id' => ['required','array'],
-            'item_category_id.*' => ['numeric', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
+            'item_category_id.*' => ['numeric', 'bail', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
         ]);
 
 
@@ -104,6 +109,41 @@ class ItemController extends Controller
         }
 
         return ItemShowResurce::make($item);
+    }
+
+    public function update($id)
+    {
+        $user = Auth::user();
+        $user_category_access_update = $user->getUserCategoryAccess('update');
+        $user_category_access_write = $user->getUserCategoryAccess('write');
+        $item_to_update = Item::whereHas('itemCategory', function($query) use($user_category_access_update) {
+            $query->whereIn('category_id', $user_category_access_update);
+        })->where('id', '=', $id)->firstOrFail();
+        $this->request->merge(['user_category_access' => $user_category_access_write]);
+        $validate_data = $this->request->validate([
+            'serial' => ['sometimes', 'string'],
+            'model' => ['sometimes', 'string'],
+            'producer' => ['sometimes', 'string'],
+            'person_id' => ['sometimes', 'numeric', 'exists:\App\Models\Person, id'],
+            'inside_identifier' => ['sometimes', 'string'],
+            'localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\Localization,id'],
+            'sub_localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\SubLocalization,id'],
+            'item_category_id' => ['sometimes', 'bail', 'array'],
+            'item_category_id.*' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
+        ]);
+
+        foreach ($validate_data as $column => $value)
+        {
+            if($column !== 'item_category_id')
+            {
+                $item_to_update->$column = $value;
+            }
+        }
+
+        $item_to_update->save();
+
+        //TODO add updating the categories for given item
+        //TODO add updating the person_id for given item
     }
 
     /**

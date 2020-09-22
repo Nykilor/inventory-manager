@@ -22,7 +22,6 @@
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ItemCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ItemCategory.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +201,9 @@
       <workItem from="1600243680072" duration="8063000" />
       <workItem from="1600334702635" duration="9703000" />
       <workItem from="1600419522810" duration="5061000" />
-      <workItem from="1600672325212" duration="6106000" />
+      <workItem from="1600672325212" duration="7312000" />
+      <workItem from="1600755765710" duration="6267000" />
+      <workItem from="1600770845671" duration="1900000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -246,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600425531468</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Creation of new Item with proper check if user is privileged to do so for given category id">
+      <created>1600689666586</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600689666586</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +279,8 @@
     <MESSAGE value="Item fetch based on category_access given privilages + boilerplate for other actions" />
     <MESSAGE value="Implementing basic filtering by $_GET, and showing single results of Item model" />
     <MESSAGE value="Small change to the way ItemController handles user filtration, added filtration by item_category_id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small change to the way ItemController handles user filtration, added filtration by item_category_id" />
+    <MESSAGE value="Creation of new Item with proper check if user is privileged to do so for given category id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creation of new Item with proper check if user is privileged to do so for given category id" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600335412278">
@@ -286,10 +295,10 @@
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1220" y="-35" key="Github.UntrackedFilesDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599824997643" />
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1600425535064">
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1600689674219">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600425535064" />
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600689674219" />
     <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599825230378">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
