@@ -18,6 +18,6 @@ class ItemPersonChangeHistory extends Model
 
     public function person()
     {
-        return $this->belongsTo('App\Models\Person');
+        return $this->belongsTo('App\Models\Person', 'new_person_id');
     }
 }

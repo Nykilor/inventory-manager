@@ -59,6 +59,7 @@ class ItemController extends Controller
             'person',
             'localization',
             'subLocalization',
+            'itemPersonChangeHistory.person'
         ])->whereHas('itemCategory', function($query) use($user_category_access) {
             $query->whereIn('id', $user_category_access);
         })->where('id', '=', $id)->firstOrFail();
@@ -140,8 +141,7 @@ class ItemController extends Controller
             }
         }
 
-        $item_to_update->save();
-
+        //$item_to_update->save();
         //TODO add updating the categories for given item
         //TODO add updating the person_id for given item
     }

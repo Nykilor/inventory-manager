@@ -23,7 +23,8 @@ class ItemShowResurce extends JsonResource
             'inside_identifier' => $this->inside_identifier,
             'localization' => LocalizationResource::make($this->localization),
             'sub_localization' => SubLocalizationResource::make($this->subLocalization),
-            'item_category' => ItemCategoryResource::collection($this->itemCategory)
+            'item_category' => ItemCategoryResource::collection($this->itemCategory),
+            'item_person_change_history' => ItemPersonChangeHistoryResource::collection($this->itemPersonChangeHistory)
         ];
     }
 }
