@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "79e1ed6e-5ae8-40d1-83b2-ffa3845c8f8b",
+		"name": "laravel demo manual test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/foo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/item - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/item?model=Latitude",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"item"
+					],
+					"query": [
+						{
+							"key": "model",
+							"value": "Latitude"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/item/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "get single item "
+			},
+			"response": []
+		},
+		{
+			"name": "api/item - POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "serial",
+							"value": "test_post",
+							"type": "text"
+						},
+						{
+							"key": "model",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "inside_identifier",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "sub_localization_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "item_category_id",
+							"value": "[1,2,3]",
+							"type": "text"
+						},
+						{
+							"key": "localization_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/item - PUT/PATCH",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"serial\": \"test\",\r\n    \"model\": \"test\",\r\n    \"producer\": \"test\",\r\n    \"inside_identifier\": \"Test\",\r\n    \"localization_id\": 1,\r\n    \"sub_localization_id\": 1,\r\n    \"item_category_id\": [1,2,3,4]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/item/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"item",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "uponEWl9argMtcLBkiselShftonPrnYwscaFFHeZ",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
