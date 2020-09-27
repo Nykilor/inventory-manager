@@ -8,12 +8,16 @@ use App\Models\Category;
 use App\Models\CategoryAccess;
 use App\Models\Item;
 use App\Models\ItemCategory;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\ItemPersonChangeHistory;
+use App\Traits\AddUserFilteringToDataFetchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+
+    use AddUserFilteringToDataFetchTrait;
+
     /**
      * @var Request
      */
@@ -32,12 +36,11 @@ class ItemController extends Controller
             'person',
             'localization',
             'subLocalization',
-        ])->whereHas('itemCategory', function($query) use($user_category_access)
-        {
+        ])->whereHas('itemCategory', function($query) use($user_category_access) {
             $this->addUserFilteringToDataFetch($query, 'item_category_id', 'whereIn', ['category_id']);
             $query->whereIn('category_id', $user_category_access);
         });
-        //TODO repository pattern
+
         //Handle all the non-array user filtering queries
         $this->addUserFilteringToDataFetch($items, 'person_id', 'where', ['id', '=']);
         $this->addUserFilteringToDataFetch($items, 'localization_id', 'where', ['id', '=']);
@@ -91,18 +94,15 @@ class ItemController extends Controller
 
         $item = new Item();
 
-        foreach ($validate_data as $column => $value)
-        {
-            if($column !== 'item_category_id')
-            {
+        foreach ($validate_data as $column => $value) {
+            if ($column !== 'item_category_id') {
                 $item->$column = $value;
             }
         }
 
         $item->save();
 
-        foreach ($validate_data['item_category_id'] as $value)
-        {
+        foreach ($validate_data['item_category_id'] as $value) {
             $item_category = new ItemCategory();
             $item_category->category_id = $value;
             $item_category->item_id = $item->id;
@@ -117,7 +117,8 @@ class ItemController extends Controller
         $user = Auth::user();
         $user_category_access_update = $user->getUserCategoryAccess('update');
         $user_category_access_write = $user->getUserCategoryAccess('write');
-        $item_to_update = Item::whereHas('itemCategory', function($query) use($user_category_access_update) {
+
+        $item_to_update = Item::with('itemCategory')->whereHas('itemCategory', function($query) use($user_category_access_update) {
             $query->whereIn('category_id', $user_category_access_update);
         })->where('id', '=', $id)->firstOrFail();
         $this->request->merge(['user_category_access' => $user_category_access_write]);
@@ -125,7 +126,7 @@ class ItemController extends Controller
             'serial' => ['sometimes', 'string'],
             'model' => ['sometimes', 'string'],
             'producer' => ['sometimes', 'string'],
-            'person_id' => ['sometimes', 'numeric', 'exists:\App\Models\Person, id'],
+            'person_id' => ['sometimes', 'numeric', 'exists:\App\Models\Person,id'],
             'inside_identifier' => ['sometimes', 'string'],
             'localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\Localization,id'],
             'sub_localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\SubLocalization,id'],
@@ -133,42 +134,44 @@ class ItemController extends Controller
             'item_category_id.*' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
         ]);
 
-        foreach ($validate_data as $column => $value)
-        {
-            if($column !== 'item_category_id')
-            {
+        foreach ($validate_data as $column => $value) {
+            if($column === 'person_id') {
+                if($item_to_update->person_id !== $value) {
+                    $item_person_change_history_model = new ItemPersonChangeHistory();
+                    $item_person_change_history_model->item_id = $item_to_update->id;
+                    $item_person_change_history_model->new_person_id = $value;
+                    $item_person_change_history_model->save();
+                }
+            }
+
+            if ($column !== 'item_category_id') {
                 $item_to_update->$column = $value;
             }
         }
 
-        //$item_to_update->save();
-        //TODO add updating the categories for given item
-        //TODO add updating the person_id for given item
-    }
-
-    /**
-     * Calls a given method ($func) on $builder with user data given in url query parameter with the spread of given array of $parameters
-     * @param Builder $builder
-     * @param string $user_query $_GET key
-     * @param string $func f.i where, whereIn etc
-     * @param array $parameters f.i ['id', '='], ['category_id']
-     */
-    protected function addUserFilteringToDataFetch(Builder &$builder, string $user_query, string $func, array $parameters)
-    {
-        $request = $this->request;
-
-        if($user_query_value = $request->query($user_query))
-        {
-            if(strpos($user_query_value, '[') === 0 && strpos($user_query_value, ']') > 1)
-            {
-                $parameters[] = array_filter(explode(',', str_replace(['[',']'], "", $user_query_value)));
-            }
-            else
-            {
-                $parameters[] = $user_query_value;
+        //Check what category - item relation we have to create
+        $add_item_to_categories = $validate_data['item_category_id'] ?? false;
+        if($add_item_to_categories) {
+            foreach ($item_to_update->itemCategory as $item_category) {
+                //We either delete the value from database, or update the $add_item_to_categories so it doesn't contain the category id
+                if (!in_array($item_category->category_id, $add_item_to_categories)) {
+                    $item_category->delete();
+                } else {
+                    $add_item_to_categories = array_diff($add_item_to_categories, [$item_category->id]);
+                }
             }
 
-            $builder->$func(...$parameters);
+            //Create missing category - item relation
+            foreach ($add_item_to_categories as $category_id) {
+                $item_category_model = new ItemCategory();
+                $item_category_model->item_id = $item_to_update->id;
+                $item_category_model->category_id = $category_id;
+                $item_category_model->save();
+            }
         }
+
+        $item_to_update->save();
+
+        return $item_to_update;
     }
 }

@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('foo', function () {
 });
 
 Route::middleware('auth:sanctum')->resource('item', \App\Http\Controllers\ItemController::class);
+Route::middleware('auth:sanctum')->resource('category', \App\Http\Controllers\CategoryController::class);
