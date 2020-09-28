@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//TODO supper user account that can do all the stuff without given privilage inside the category_access
+//TODO deletion of "mistake" categories and items
+//TODO soft deletion ?
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

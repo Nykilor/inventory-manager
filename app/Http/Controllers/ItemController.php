@@ -73,7 +73,7 @@ class ItemController extends Controller
     public function store()
     {
         $user = Auth::user();
-        $user_category_access = $user->getUserCategoryAccess('write');
+        $user_category_access = $user->getUserCategoryAccess('create');
         //Cast item_category_id string into array and validate
         $this->request->merge(['item_category_id' => json_decode($this->request->get('item_category_id'))]);
         //We use this to let Laravel handle if the user can write to given item_category_id by using in_array:user_category_id.*
@@ -116,7 +116,7 @@ class ItemController extends Controller
     {
         $user = Auth::user();
         $user_category_access_update = $user->getUserCategoryAccess('update');
-        $user_category_access_write = $user->getUserCategoryAccess('write');
+        $user_category_access_write = $user->getUserCategoryAccess('create');
 
         $item_to_update = Item::with('itemCategory')->whereHas('itemCategory', function($query) use($user_category_access_update) {
             $query->whereIn('category_id', $user_category_access_update);

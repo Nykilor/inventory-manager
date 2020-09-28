@@ -15,7 +15,7 @@ class CreateCategoryAccessTable extends Migration
     {
         Schema::create('category_access', function (Blueprint $table) {
             $table->id();
-            $table->boolean("write");
+            $table->boolean("create");
             $table->boolean("read");
             $table->boolean("update");
             $table->foreignId("users_id")->constrained('users');

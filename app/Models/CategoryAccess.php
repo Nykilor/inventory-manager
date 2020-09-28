@@ -11,6 +11,8 @@ class CategoryAccess extends Model
 
     protected $table = 'category_access';
 
+    public $timestamps = false;
+
     public function users()
     {
         return $this->belongsTo('App\Models\User');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Models\CategoryAccess;
 use App\Traits\AddUserFilteringToDataFetchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -32,32 +34,47 @@ class CategoryController extends Controller
     {
         $user = Auth::user();
         $user_category_access = $user->getUserCategoryAccess('read');
-        $categories = Category::whereHas('itemCategory', function($query) use($user_category_access) {
+        $categories = Category::whereHas('categoryAccess', function($query) use($user_category_access) {
             $query->whereIn('category_id', $user_category_access);
         })->get();
+
+        $this->addUserFilteringToDataFetch($categories, 'name', 'where', ['model', 'LIKE']);
+        $this->addUserFilteringToDataFetch($categories, 'description', 'where', ['model', 'LIKE']);
 
         return ResourceCollection::make($categories);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $user = Auth::user();
+        $validate_data = $this->request->validate([
+            'name' => ['required', 'string'],
+            'description' => ['sometimes', 'string', 'nullable'],
+        ]);
+
+        $category_model = new Category();
+
+        foreach ($validate_data as $column => $value)  {
+            $category_model->$column = $value;
+        }
+
+        $category_model->save();
+
+        //Give the creator full privilage
+        $category_access_model = new CategoryAccess();
+        $category_access_model->create = 1;
+        $category_access_model->read = 1;
+        $category_access_model->update = 1;
+        $category_access_model->users_id = $user->id;
+        $category_access_model->category_id = $category_model->id;
+        $category_access_model->save();
+
+        return CategoryResource::make($category_model);
     }
 
     /**
@@ -68,40 +85,41 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $user_category_access = $user->getUserCategoryAccess('read');
+        $category = Category::whereHas('categoryAccess', function($query) use($user_category_access) {
+            $query->whereIn('category_id', $user_category_access);
+        })->where('id', '=', $id)->firstOrFail();
+
+        return CategoryResource::make($category);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
-    }
+        $user = Auth::user();
+        $user_category_access = $user->getUserCategoryAccess('update');
+        $validate_data = $this->request->validate([
+            'name' => ['sometimes', 'string'],
+            'description' => ['sometimes', 'string', 'nullable'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $category = Category::whereHas('categoryAccess', function($query) use($user_category_access) {
+            $query->whereIn('category_id', $user_category_access);
+        })->where('id', '=', $id)->firstOrFail();
+
+        foreach ($validate_data as $column => $value) {
+            $category->$column = $value;
+        }
+
+        $category->save();
+
+        return CategoryResource::make($category);
     }
 }

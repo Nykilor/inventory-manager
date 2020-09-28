@@ -132,7 +132,7 @@ class DemoSeeder extends Seeder
 
         //Create categories access
         DB::table('category_access')->insert([
-            'write' => true,
+            'create' => true,
             'read' => true,
             'update' => true,
             'users_id' => 1,
@@ -140,7 +140,7 @@ class DemoSeeder extends Seeder
         ]);
 
         DB::table('category_access')->insert([
-            'write' => true,
+            'create' => true,
             'read' => true,
             'update' => true,
             'users_id' => 1,
@@ -148,7 +148,7 @@ class DemoSeeder extends Seeder
         ]);
 
         DB::table('category_access')->insert([
-            'write' => true,
+            'create' => true,
             'read' => true,
             'update' => true,
             'users_id' => 2,

@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function getCategoryAccessAttribute()
     {
-        return $this->categoryAccess()->get(['write', 'read', 'update', 'category_id']);
+        return $this->categoryAccess()->get(['create', 'read', 'update', 'category_id']);
     }
 
     public function categoryAccess()
@@ -82,7 +82,7 @@ class User extends Authenticatable
      */
     public function getUserCategoryAccess(string $action = 'read') : array
     {
-        if(!in_array($action, ['write', 'read', 'update']))
+        if(!in_array($action, ['create', 'read', 'update']))
         {
             throw new \Exception("Only write, read or update parameter is accepted");
         }

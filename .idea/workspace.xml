@@ -20,9 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/app/Traits/AddUserFilteringToDataFetchTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/CategoryAccess.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CategoryAccess.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_10_063129_create_category_access_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_10_063129_create_category_access_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +224,8 @@
       <workItem from="1600770845671" duration="1900000" />
       <workItem from="1600873860536" duration="3432000" />
       <workItem from="1601216846498" duration="535000" />
-      <workItem from="1601217390187" duration="9000000" />
+      <workItem from="1601217390187" duration="9695000" />
+      <workItem from="1601311198434" duration="4695000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -277,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600887989261</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Finished ItemController.php starting CategoryController.php">
+      <created>1601229713351</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601229713352</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +317,8 @@
     <MESSAGE value="Small change to the way ItemController handles user filtration, added filtration by item_category_id" />
     <MESSAGE value="Creation of new Item with proper check if user is privileged to do so for given category id" />
     <MESSAGE value="ItemPersonChangeHistory in the api/item/{id} route." />
-    <option name="LAST_COMMIT_MESSAGE" value="ItemPersonChangeHistory in the api/item/{id} route." />
+    <MESSAGE value="Finished ItemController.php starting CategoryController.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished ItemController.php starting CategoryController.php" />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="175" key="#CLI_Interpreters" timestamp="1601221440154">
@@ -339,16 +353,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601217456043" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1600887999941">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601229727935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600689674219" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600887999941" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601229727935" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601216932460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599825230378" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601216932460" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1601311702664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601311702664" />
     <state x="-1159" y="166" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1599824946754">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
