@@ -64,7 +64,8 @@ class DemoSeeder extends Seeder
             'name' => 'Adam',
             'email' => 'demo@company.com',
             'password' => Hash::make('root'),
-            'person_id' => 1
+            'person_id' => 1,
+            'super_user' => 1
         ]);
 
         DB::table('users')->insert([

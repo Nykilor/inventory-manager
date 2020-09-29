@@ -82,10 +82,15 @@ class User extends Authenticatable
      */
     public function getUserCategoryAccess(string $action = 'read') : array
     {
-        if(!in_array($action, ['create', 'read', 'update']))
-        {
-            throw new \Exception("Only write, read or update parameter is accepted");
+        if(!in_array($action, ['create', 'read', 'update'])) {
+            throw new \Exception("Only 'create', 'read' or 'update' parameter is accepted");
         }
+
+        //If the user is a super_user he can access any category
+        if($this->super_user) {
+            return Category::all()->pluck('id')->toArray();
+        }
+
         list($user_category_access) = $this->getCategoryAccessAttribute()->partition(function($entry) use($action) {
             return $entry->$action;
         });
