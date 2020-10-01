@@ -19,8 +19,10 @@ class CreateItemTable extends Migration
             $table->string("serial");
             $table->string("model");
             $table->string("producer");
-            $table->foreignId("person_id")->constrained('person');
+            $table->foreignId("person_id")->nullable()->constrained('person');
             $table->string("inside_identifier");
+            $table->boolean('is_disposed');
+            $table->foreignId('disposed_by_person_id')->nullable()->constrained('person');
         });
     }
 

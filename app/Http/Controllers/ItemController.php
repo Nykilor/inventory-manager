@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ItemListResource;
 use App\Http\Resources\ItemShowResurce;
-use App\Models\Category;
-use App\Models\CategoryAccess;
 use App\Models\Item;
 use App\Models\ItemCategory;
 use App\Models\ItemPersonChangeHistory;
@@ -26,6 +24,7 @@ class ItemController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->middleware('is.super.user')->only('destroy');
     }
 
     public function index()
@@ -64,7 +63,7 @@ class ItemController extends Controller
             'subLocalization',
             'itemPersonChangeHistory.person'
         ])->whereHas('itemCategory', function($query) use($user_category_access) {
-            $query->whereIn('id', $user_category_access);
+            $query->whereIn('category_id', $user_category_access);
         })->where('id', '=', $id)->firstOrFail();
 
         return ItemShowResurce::make($item);
@@ -173,5 +172,29 @@ class ItemController extends Controller
         $item_to_update->save();
 
         return $item_to_update;
+    }
+
+    public function softDestroy($id)
+    {
+        //TODO soft destroy
+        //Is_disposed and disposed_by columns
+    }
+
+    /**
+     * Hard delete only available for the administrator
+     * @param $id
+     * @return bool
+     */
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+
+        foreach ($item->itemCategory as $category) {
+            $category->delete();
+        }
+
+        $item->delete();
+
+        return true;
     }
 }

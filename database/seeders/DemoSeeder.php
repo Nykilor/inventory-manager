@@ -106,6 +106,16 @@ class DemoSeeder extends Seeder
             'sub_localization_id' => 1
         ]);
 
+        DB::table('item')->insert([
+            'serial' => 'PfKf38',
+            'model' => 'Galaxy xCover 4',
+            'producer' => 'Samsung',
+            'person_id' => 2,
+            'inside_identifier' => '00001842',
+            'localization_id' => 1,
+            'sub_localization_id' => 1
+        ]);
+
         //Create category
         DB::table('category')->insert([
             'name' => 'Laptop'
@@ -113,6 +123,10 @@ class DemoSeeder extends Seeder
 
         DB::table('category')->insert([
            'name' => 'Smart phone'
+        ]);
+
+        DB::table('category')->insert([
+            'name' => 'Rigid'
         ]);
 
         //Create items categories
@@ -129,6 +143,11 @@ class DemoSeeder extends Seeder
         DB::table('item_category')->insert([
             'category_id' => 2,
             'item_id' => 3
+        ]);
+
+        DB::table('item_category')->insert([
+            'category_id' => 3,
+            'item_id' => 4
         ]);
 
         //Create categories access
@@ -154,6 +173,14 @@ class DemoSeeder extends Seeder
             'update' => true,
             'users_id' => 2,
             'category_id' => 2
+        ]);
+
+        DB::table('category_access')->insert([
+            'create' => true,
+            'read' => true,
+            'update' => true,
+            'users_id' => 2,
+            'category_id' => 3
         ]);
 
         //Create item person change history entry
