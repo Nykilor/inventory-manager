@@ -22,10 +22,8 @@
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Person.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_10_060621_create_item_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_10_060621_create_item_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DemoSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +196,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -220,6 +218,7 @@
       <workItem from="1600755765710" duration="6267000" />
       <workItem from="1600770845671" duration="1900000" />
       <workItem from="1600873860536" duration="3280000" />
+      <workItem from="1601632306610" duration="5740000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -270,11 +269,18 @@
       <option name="project" value="LOCAL" />
       <updated>1600689666586</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Super_admin column for user, destroy for item and softDestroy base for item (disposing of item)">
+      <created>1601554247508</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601554247508</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -296,7 +302,8 @@
     <MESSAGE value="Implementing basic filtering by $_GET, and showing single results of Item model" />
     <MESSAGE value="Small change to the way ItemController handles user filtration, added filtration by item_category_id" />
     <MESSAGE value="Creation of new Item with proper check if user is privileged to do so for given category id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation of new Item with proper check if user is privileged to do so for given category id" />
+    <MESSAGE value="Super_admin column for user, destroy for item and softDestroy base for item (disposing of item)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Super_admin column for user, destroy for item and softDestroy base for item (disposing of item)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600335412278">
@@ -315,10 +322,10 @@
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600689674219" />
-    <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599825230378">
+    <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601632388651">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599825230378" />
+    <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1601632388651" />
     <state x="-1253" y="-141" width="585" height="801" key="find.popup" timestamp="1601549054236">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //TODO deletion of "mistake" categories and items, it should only allow to delete a category if it has no items inside of itself
-
+//TODO fix the ItemShowResoure so it shows valid person data on disposed_b_person_id column and so it shows the is_disposed column
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->get('foo', function () {
 });
 
 Route::middleware('auth:sanctum')->resource('item', \App\Http\Controllers\ItemController::class);
+Route::middleware('auth:sanctum')->post('item/{item}/dispose', '\App\Http\Controllers\ItemController@dispose');
 Route::middleware('auth:sanctum')->resource('category', \App\Http\Controllers\CategoryController::class);

@@ -21,7 +21,7 @@ class CreateItemTable extends Migration
             $table->string("producer");
             $table->foreignId("person_id")->nullable()->constrained('person');
             $table->string("inside_identifier");
-            $table->boolean('is_disposed');
+            $table->boolean('is_disposed')->default(false);
             $table->foreignId('disposed_by_person_id')->nullable()->constrained('person');
         });
     }

@@ -133,6 +133,9 @@ class ItemController extends Controller
             'item_category_id.*' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\ItemCategory,id', 'in_array:user_category_access.*']
         ]);
 
+        if($item_to_update->is_disposed) {
+            return abort('400', 'You can\'t edit an disposed item.');
+        }
         foreach ($validate_data as $column => $value) {
             if($column === 'person_id') {
                 if($item_to_update->person_id !== $value) {
@@ -171,13 +174,46 @@ class ItemController extends Controller
 
         $item_to_update->save();
 
-        return $item_to_update;
+        return ItemShowResurce::make($item_to_update);
     }
 
-    public function softDestroy($id)
+    /**
+     * Used for setting item to be disposed
+     * @param $id
+     */
+    public function dispose($id)
     {
-        //TODO soft destroy
-        //Is_disposed and disposed_by columns
+        $user = Auth::user();
+        $user_category_access_update = $user->getUserCategoryAccess('update');
+        $item_to_update = Item::with('itemCategory')->whereHas('itemCategory', function($query) use($user_category_access_update) {
+            $query->whereIn('category_id', $user_category_access_update);
+        })->where('id', '=', $id)->firstOrFail();
+        $validate_data = $this->request->validate([
+            'is_disposed' => ['required', 'boolean']
+        ]);
+
+        $item_person_user = $item_to_update->person->user;
+
+        if(is_null($item_person_user)) {
+            return abort('400', 'Item has to be assigned to an administrative user.');
+        } else {
+            $disposed = $validate_data['is_disposed'];
+            if($disposed) {
+                if($user->super_user) {
+                    $item_to_update->is_disposed = true;
+                    $item_to_update->disposed_by_person_id = $user->id;
+                    $item_to_update->save();
+                } else {
+                    return abort('400', 'Only super user can make the item not disposed.');
+                }
+            } else {
+                $item_to_update->is_disposed = false;
+                $item_to_update->disposed_by_person_id = null;
+                $item_to_update->save();
+            }
+        }
+
+        return ItemShowResurce::make($item_to_update);
     }
 
     /**
