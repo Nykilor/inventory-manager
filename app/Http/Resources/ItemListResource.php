@@ -23,7 +23,8 @@ class ItemListResource extends JsonResource
             'inside_identifier' => $this->inside_identifier,
             'localization_id' => $this->localization->id,
             'sub_localization_id' => $this->subLocalization->id,
-            'item_category_id' => ItemCategoryResource::collection($this->itemCategory)
+            'item_category_id' => ItemCategoryResource::collection($this->itemCategory),
+            'is_disposed' => $this->is_disposed
         ];
     }
 }

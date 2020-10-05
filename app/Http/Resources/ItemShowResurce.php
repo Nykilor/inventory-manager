@@ -24,7 +24,9 @@ class ItemShowResurce extends JsonResource
             'localization' => LocalizationResource::make($this->localization),
             'sub_localization' => SubLocalizationResource::make($this->subLocalization),
             'item_category' => ItemCategoryResource::collection($this->itemCategory),
-            'item_person_change_history' => ItemPersonChangeHistoryResource::collection($this->itemPersonChangeHistory)
+            'item_person_change_history' => ItemPersonChangeHistoryResource::collection($this->itemPersonChangeHistory),
+            'disposed_by_person_id' => PersonResource::make($this->disposedBy),
+            'is_disposed' => $this->is_disposed
         ];
     }
 }

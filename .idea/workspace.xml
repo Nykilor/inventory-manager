@@ -21,9 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ItemListResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ItemListResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ItemShowResurce.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/ItemShowResurce.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Item.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Person.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_10_060621_create_item_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_10_060621_create_item_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -218,7 +219,9 @@
       <workItem from="1600755765710" duration="6267000" />
       <workItem from="1600770845671" duration="1900000" />
       <workItem from="1600873860536" duration="3280000" />
-      <workItem from="1601632306610" duration="5740000" />
+      <workItem from="1601632306610" duration="5795000" />
+      <workItem from="1601870543168" duration="616000" />
+      <workItem from="1601889350599" duration="7489000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -276,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601554247508</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Soft deletion (disposal of items checbox).">
+      <created>1601640947180</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601640947180</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,13 +313,18 @@
     <MESSAGE value="Small change to the way ItemController handles user filtration, added filtration by item_category_id" />
     <MESSAGE value="Creation of new Item with proper check if user is privileged to do so for given category id" />
     <MESSAGE value="Super_admin column for user, destroy for item and softDestroy base for item (disposing of item)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Super_admin column for user, destroy for item and softDestroy base for item (disposing of item)" />
+    <MESSAGE value="Soft deletion (disposal of items checbox)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Soft deletion (disposal of items checbox)." />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600335412278">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600335412278" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601898677251">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/-1920.-260.1920.1040@0.0.1536.824" timestamp="1601898677251" />
     <state x="-1106" y="158" key="Github.ShareDialog" timestamp="1599824985689">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
@@ -318,18 +333,18 @@
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1220" y="-35" key="Github.UntrackedFilesDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1599824997643" />
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1600689674219">
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2" timestamp="1601870557627">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600689674219" />
+    <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1601870557627" />
     <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601632388651">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1143" y="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1601632388651" />
-    <state x="-1253" y="-141" width="585" height="801" key="find.popup" timestamp="1601549054236">
+    <state x="-1253" y="-141" width="585" height="801" key="find.popup" timestamp="1601892856720">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
-    <state x="-1253" y="-141" width="585" height="801" key="find.popup/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1601549054236" />
+    <state x="-1253" y="-141" width="585" height="801" key="find.popup/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1601892856720" />
     <state x="-1159" y="166" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1599824946754">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>

@@ -35,4 +35,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\SubLocalization');
     }
+
+    public function disposedBy()
+    {
+        return $this->belongsTo('App\Models\Person', 'disposed_by_person_id');
+    }
 }
