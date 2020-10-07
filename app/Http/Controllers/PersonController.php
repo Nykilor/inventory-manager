@@ -20,6 +20,7 @@ class PersonController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->middleware('is.super.user')->only('destroy');
     }
 
     /**
@@ -99,7 +100,7 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -111,17 +112,38 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate_data = $this->request->validate([
+            'name' => ['sometimes', 'string'],
+            'last_name' => ['sometimes', 'string'],
+            'inside_identifier' => ['sometimes', 'string'],
+            'phone' => ['sometimes', 'string'],
+            'email' => ['sometimes', 'email'],
+            'is_employed' => ['sometimes', 'boolean'],
+        ]);
+
+        $person_model = Person::findOrFail($id);
+
+        foreach ($validate_data as $column => $value) {
+            $person_model->$column = $value;
+        }
+
+        $person_model->save();
+
+        return PersonShowResource::make($person_model);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage. Only available for the super user, won't be allowed if the person is bound to something.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $person_model = Person::findOrFail($id);
+
+        $person_model->delete();
+
+        return true;
     }
 }

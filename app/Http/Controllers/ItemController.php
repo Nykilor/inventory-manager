@@ -10,6 +10,7 @@ use App\Models\ItemPersonChangeHistory;
 use App\Traits\AddUserFilteringToDataFetchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
@@ -27,6 +28,11 @@ class ItemController extends Controller
         $this->middleware('is.super.user')->only('destroy');
     }
 
+    /**
+     * Shows a list of items which for user has at least access to one category
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function index()
     {
         $user = Auth::user();
@@ -116,7 +122,6 @@ class ItemController extends Controller
         $user = Auth::user();
         $user_category_access_update = $user->getUserCategoryAccess('update');
         $user_category_access_write = $user->getUserCategoryAccess('create');
-
         $item_to_update = Item::with('itemCategory')->whereHas('itemCategory', function($query) use($user_category_access_update) {
             $query->whereIn('category_id', $user_category_access_update);
         })->where('id', '=', $id)->firstOrFail();
@@ -125,7 +130,12 @@ class ItemController extends Controller
             'serial' => ['sometimes', 'string'],
             'model' => ['sometimes', 'string'],
             'producer' => ['sometimes', 'string'],
-            'person_id' => ['sometimes', 'numeric', 'exists:\App\Models\Person,id'],
+            'person_id' => ['sometimes', 'numeric',
+                Rule::exists('person','id')->where(function ($query) {
+                    //We make sure that only people that are employed can be assigned items
+                    $query->where('is_employed', 1);
+                })
+            ],
             'inside_identifier' => ['sometimes', 'string'],
             'localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\Localization,id'],
             'sub_localization_id' => ['sometimes', 'bail', 'numeric', 'exists:\App\Models\SubLocalization,id'],
