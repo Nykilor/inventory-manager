@@ -23,6 +23,8 @@ class CategoryController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
+        //Only super_user should be able to make changes to categories
+        $this->middleware('is.super.user');
     }
 
     /**

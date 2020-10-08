@@ -19,19 +19,8 @@ class CategoryAccessController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-    }
-
-    /**
-     * Display the user categories and his privileges.
-     *
-     * @param  int  $id \App\Model\User
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $category_access_model = CategoryAccess::with('category')->where('users_id', $id)->get();
-
-        return CategoryAccessListResource::collection($category_access_model);
+        //Only super_user should be able to make changes to categories
+        $this->middleware('is.super.user');
     }
 
     /**
@@ -69,6 +58,9 @@ class CategoryAccessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category_access_model = CategoryAccess::findOrFail($id);
+        $category_access_model->delete();
+
+        return true;
     }
 }

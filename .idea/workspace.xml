@@ -21,8 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="00ec55d8-31a2-477e-86f2-37a24d4d5354" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryAccessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryAccessController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Localization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Localization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/SubLocalization.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SubLocalization.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_15_114340_create_localization_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_15_114340_create_localization_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -222,6 +225,7 @@
       <workItem from="1601217390187" duration="9695000" />
       <workItem from="1601311198434" duration="4913000" />
       <workItem from="1601406675382" duration="901000" />
+      <workItem from="1602174388299" duration="6804000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1599825188839</created>
@@ -293,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601316072689</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="CategoryAccessController base.">
+      <created>1602097711661</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1602097711661</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +333,8 @@
     <MESSAGE value="ItemPersonChangeHistory in the api/item/{id} route." />
     <MESSAGE value="Finished ItemController.php starting CategoryController.php" />
     <MESSAGE value="Controller for basic API functionality for Category model controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="Controller for basic API functionality for Category model controller." />
+    <MESSAGE value="CategoryAccessController base." />
+    <option name="LAST_COMMIT_MESSAGE" value="CategoryAccessController base." />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="175" key="#CLI_Interpreters" timestamp="1601221440154">
@@ -337,10 +349,10 @@
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
     <state x="-1235" y="-133" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600335412278" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602094711947">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602181669213">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602094711947" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602181669213" />
     <state x="-1106" y="158" key="Github.ShareDialog" timestamp="1599824985689">
       <screen x="-1920" y="-260" width="1920" height="1040" />
     </state>
@@ -357,11 +369,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601217456043" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601316075388">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602097718187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1368" y="-7" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.-260.1920.1040@-1920.-260.1920.1040" timestamp="1600689674219" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601316075388" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602097718187" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601216932460">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

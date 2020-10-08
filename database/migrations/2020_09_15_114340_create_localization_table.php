@@ -20,8 +20,8 @@ class CreateLocalizationTable extends Migration
             $table->string('street');
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
         });
     }
 

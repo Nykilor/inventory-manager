@@ -9,15 +9,17 @@ class Localization extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $table = 'localization';
 
     public function item()
     {
-        $this->hasMany('App\Models\Item');
+        return $this->hasMany('App\Models\Item');
     }
 
     public function subLocalization()
     {
-        $this->hasMany('App\Models\SubLocalization');
+        return $this->hasMany('App\Models\SubLocalization');
     }
 }

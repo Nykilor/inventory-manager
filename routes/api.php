@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//TODO I think only the super user should be able to create categories and be able to grant privilages to read, create, update etc.
+//TODO Refactor the categories controllers so that they don't check the category access stuff (the middleware does that)
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -28,3 +28,6 @@ Route::middleware('auth:sanctum')->post('item/{item}/dispose', '\App\Http\Contro
 Route::middleware('auth:sanctum')->resource('category', \App\Http\Controllers\CategoryController::class);
 Route::middleware('auth:sanctum')->resource('person', \App\Http\Controllers\PersonController::class);
 Route::middleware('auth:sanctum')->resource('categoryAccess', \App\Http\Controllers\CategoryAccessController::class);
+Route::middleware('auth:sanctum')->get('user/{user}/categoryAccess', \App\Http\Controllers\UserCategoryAccessController::class);
+Route::middleware('auth:sanctum')->resource('localization', \App\Http\Controllers\LocalizationController::class);
+Route::middleware('auth:sanctum')->resource('subLocalization', \App\Http\Controllers\SubLocalizationController::class);
