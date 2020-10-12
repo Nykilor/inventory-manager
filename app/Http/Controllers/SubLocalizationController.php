@@ -41,16 +41,6 @@ class SubLocalizationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @return BaseResource
@@ -79,22 +69,11 @@ class SubLocalizationController extends Controller
      * @param int $id
      * @return BaseResource
      */
-    public function show($id)
+    public function show(int $id)
     {
         $sub_localization_model = SubLocalization::findOrFail($id);
 
         return BaseResource::make($sub_localization_model);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -103,7 +82,7 @@ class SubLocalizationController extends Controller
      * @param int $id
      * @return BaseResource
      */
-    public function update($id)
+    public function update(int $id)
     {
         $validate_data = $this->request->validate([
             'name' => ['sometimes', 'string'],
@@ -124,10 +103,10 @@ class SubLocalizationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return bool
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $sub_localization_model = SubLocalization::findOrFail($id);
         $sub_localization_model->delete();

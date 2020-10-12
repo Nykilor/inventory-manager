@@ -9,6 +9,7 @@ use App\Models\ItemCategory;
 use App\Models\ItemPersonChangeHistory;
 use App\Traits\AddUserFilteringToDataFetchTrait;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -31,7 +32,7 @@ class ItemController extends Controller
     /**
      * Shows a list of items which for user has at least access to one category
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -58,7 +59,11 @@ class ItemController extends Controller
         return ItemListResource::collection($items->get());
     }
 
-    public function show($id)
+    /**
+     * @param int $id
+     * @return ItemShowResurce
+     */
+    public function show(int $id)
     {
         $user = Auth::user();
         $user_category_access = $user->getUserCategoryAccess('read');
@@ -75,6 +80,9 @@ class ItemController extends Controller
         return ItemShowResurce::make($item);
     }
 
+    /**
+     * @return ItemShowResurce
+     */
     public function store()
     {
         $user = Auth::user();
@@ -117,7 +125,11 @@ class ItemController extends Controller
         return ItemShowResurce::make($item);
     }
 
-    public function update($id)
+    /**
+     * @param int $id
+     * @return ItemShowResurce|void
+     */
+    public function update(int $id)
     {
         $user = Auth::user();
         $user_category_access_update = $user->getUserCategoryAccess('update');
@@ -189,9 +201,10 @@ class ItemController extends Controller
 
     /**
      * Used for setting item to be disposed
-     * @param $id
+     * @param int $id
+     * @return ItemShowResurce|void
      */
-    public function dispose($id)
+    public function dispose(int $id)
     {
         $user = Auth::user();
         $user_category_access_update = $user->getUserCategoryAccess('update');
@@ -228,10 +241,10 @@ class ItemController extends Controller
 
     /**
      * Hard delete only available for the administrator
-     * @param $id
+     * @param int $id
      * @return bool
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $item = Item::findOrFail($id);
 

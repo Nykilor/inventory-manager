@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryAccessListResource;
 use App\Models\CategoryAccess;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserCategoryAccessController extends Controller
 {
@@ -17,10 +18,10 @@ class UserCategoryAccessController extends Controller
     /**
      * Display the user categories and his privileges.
      *
-     * @param  int  $id \App\Model\User
-     * @return \Illuminate\Http\Response
+     * @param int $id \App\Model\User
+     * @return AnonymousResourceCollection
      */
-    public function __invoke($id)
+    public function __invoke(int $id)
     {
         $category_access_model = CategoryAccess::with('category')->where('users_id', $id)->get();
 

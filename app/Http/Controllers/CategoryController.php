@@ -8,6 +8,7 @@ use App\Models\CategoryAccess;
 use App\Traits\AddUserFilteringToDataFetchTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
@@ -30,7 +31,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ResourceCollection
      */
     public function index()
     {
@@ -49,7 +50,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return CategoryResource
      */
     public function store()
     {
@@ -82,10 +83,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return CategoryResource
      */
-    public function show($id)
+    public function show(int $id)
     {
         $user = Auth::user();
         $user_category_access = $user->getUserCategoryAccess('read');
@@ -100,10 +101,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return CategoryResource
      */
-    public function update($id)
+    public function update(int $id)
     {
         $user = Auth::user();
         $user_category_access = $user->getUserCategoryAccess('update');

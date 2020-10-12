@@ -7,6 +7,7 @@ use App\Http\Resources\CategoryAccessListResource;
 use App\Models\CategoryAccess;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryAccessController extends Controller
@@ -27,9 +28,9 @@ class CategoryAccessController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id \App\Model\CategoryAccess
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update($id)
+    public function update(int $id)
     {
         $user = Auth::user();
         $user_category_access = $user->getUserCategoryAccess('update');
@@ -53,10 +54,10 @@ class CategoryAccessController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return bool
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $category_access_model = CategoryAccess::findOrFail($id);
         $category_access_model->delete();
