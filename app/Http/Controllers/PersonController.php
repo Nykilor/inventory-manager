@@ -26,7 +26,7 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return ResourceCollection
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -42,11 +42,22 @@ class PersonController extends Controller
     }
 
     /**
+     * Index the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
-     * @return PersonShowResource
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $validate_data = $this->request->validate([
             'name' => ['required', 'string'],
@@ -71,10 +82,10 @@ class PersonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return PersonShowResource
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
         $person = Person::findOrFail($id);
 
@@ -82,12 +93,24 @@ class PersonController extends Controller
     }
 
     /**
+     * Index the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+    }
+
+    /**
      * Update the specified resource in storage.
      *
-     * @param int $id
-     * @return PersonShowResource
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(int $id)
+    public function update(Request $request, $id)
     {
         $validate_data = $this->request->validate([
             'name' => ['sometimes', 'string'],
@@ -112,10 +135,10 @@ class PersonController extends Controller
     /**
      * Remove the specified resource from storage. Only available for the super user, won't be allowed if the person is bound to something.
      *
-     * @param int $id
-     * @return bool
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         $person_model = Person::findOrFail($id);
 

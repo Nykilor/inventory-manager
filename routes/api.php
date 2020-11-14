@@ -14,14 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//TODO Refactor the categories controllers so that they don't check the category access stuff (the middleware does that)
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get('foo', function () {
-    return 'bar';
-});
 
 Route::middleware('auth:sanctum')->resource('item', \App\Http\Controllers\ItemController::class);
 Route::middleware('auth:sanctum')->post('item/{item}/dispose', '\App\Http\Controllers\ItemController@dispose');
