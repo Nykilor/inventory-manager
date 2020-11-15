@@ -63,27 +63,14 @@
             </div>
         </section>
         <section>
-            <div class="md:flex py-2 flex-col">
+            <div class="py-2">
                 <div class="md:w-12/12">
                     <label class="text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="categories">
                         {{ __('Categories') }}:
                     </label>
                 </div>
-                <div class="w-screen pl-2" id="categories">
-                    <livewire:item.item-category.add />
-                    <button class="text-sm font-medium bg-blue-500 hover:bg-blue-700 p-2 pl-2 rounded align-middle hover:bg-red-200 text-white font-bold"
-                            wire:target="toggleShowAddItemCategory"
-                            wire:click="$emit('toggleShowAddItemCategory')"
-                            wire:loading.class="opacity-50 cursor-not-allowed"
-                            wire:loading.attr="disabled"
-                            wire:ignore
-                            onclick="disableButtonFor(this, 500)">Add +</button>
-                    @foreach($item->itemCategory as $category)
-                        <span class="text-sm font-medium bg-gray-200 py-2 pl-2 rounded align-middle hover:bg-red-200">
-                            {{ $category->category->name }}
-                            <button wire:click="removeItemCategory({{ $category->id }})" class="text-red-700 p-2 font-bold" wire:loading.class="opacity-50 cursor-not-allowed" wire:loading.attr="disabled">X</button>
-                        </span>
-                    @endforeach
+                <div class="p-4 border-4 border-solid" id="categories">
+                    <livewire:item.item-category.manage :item-id="$item->id" :item-categories="$item->itemCategory" />
                 </div>
             </div>
         </section>

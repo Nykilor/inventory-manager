@@ -12,7 +12,7 @@ use Laravel\Jetstream\Rules\Role;
 class AddTeamMember implements AddsTeamMembers
 {
     /**
-     * Add a new team member to the given team.
+     * Manage a new team member to the given team.
      *
      * @param  mixed  $user
      * @param  mixed  $team

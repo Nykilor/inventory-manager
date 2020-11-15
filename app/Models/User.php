@@ -77,10 +77,10 @@ class User extends Authenticatable
     /**
      * Returns array of category_id's that the given user has the privilege to use given action on
      * @param string $action Either value of [write, read, update]
-     * @return array
+     * @param bool $toArray Returns array or collection
      * @throws \Exception
      */
-    public function getUserCategoryAccess(string $action = 'read') : array
+    public function getUserCategoryAccess(string $action = 'read', $toArray = true)
     {
         if(!in_array($action, ['create', 'read', 'update'])) {
             throw new \Exception("Only 'create', 'read' or 'update' parameter is accepted");
@@ -88,13 +88,22 @@ class User extends Authenticatable
 
         //If the user is a super_user he can access any category
         if($this->super_user) {
-            return Category::all()->pluck('id')->toArray();
+            if($toArray) {
+                return Category::all()->pluck('id')->toArray();
+            } else {
+                return Category::all();
+            }
+
         }
 
         list($user_category_access) = $this->getCategoryAccessAttribute()->partition(function($entry) use($action) {
             return $entry->$action;
         });
 
-        return $user_category_access->pluck('category_id')->toArray();
+        if($toArray) {
+            return $user_category_access->pluck('category_id')->toArray();
+        } else {
+            return $user_category_access;
+        }
     }
 }

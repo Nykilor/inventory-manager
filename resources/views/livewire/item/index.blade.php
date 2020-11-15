@@ -73,6 +73,7 @@
                 </div>
             @endif
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" wire:click="openModal()">Create new item</button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" wire:click="openModal()">Create new item</button>
             <table class="table-fixed w-full">
                 <thead>
                 <tr class="bg-gray-100">

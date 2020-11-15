@@ -13,6 +13,8 @@ class SlideOverEditItem extends Component
     public $edited;
     public $showAddCategoryModal = false;
 
+    protected $listeners = ['refreshItem'];
+
     public function updateEdited()
     {
         $user = Auth::user();
@@ -40,17 +42,8 @@ class SlideOverEditItem extends Component
         return view('livewire.item.slide-over-item-edit-content');
     }
 
-    public function removeItemCategory($id)
+    public function refreshItem()
     {
-        $user = Auth::user();
-        $user_category_access = $user->getUserCategoryAccess('update');
-        $item_categories = $this->item->itemCategory->pluck('id')->toArray();
-        $remove_category = ItemCategory::whereIn('category_id', $user_category_access)->where('id', '=', $id)->firstOrFail();
-        if(in_array($id, $item_categories)) {
-            $remove_category->delete();
-            $this->item->refresh();
-        } else {
-            var_dump(true);
-        }
+        $this->item->refresh();
     }
 }
