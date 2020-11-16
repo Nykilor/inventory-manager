@@ -206,13 +206,13 @@ module.exports = function xhrAdapter(config) {
       request = null;
     };
 
-    // Manage xsrf header
+    // Add xsrf header
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
       var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
-      // Manage xsrf header
+      // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
         undefined;
@@ -222,7 +222,7 @@ module.exports = function xhrAdapter(config) {
       }
     }
 
-    // Manage headers to the request
+    // Add headers to the request
     if ('setRequestHeader' in request) {
       utils.forEach(requestHeaders, function setRequestHeader(val, key) {
         if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
@@ -235,12 +235,12 @@ module.exports = function xhrAdapter(config) {
       });
     }
 
-    // Manage withCredentials to request if needed
+    // Add withCredentials to request if needed
     if (!utils.isUndefined(config.withCredentials)) {
       request.withCredentials = !!config.withCredentials;
     }
 
-    // Manage responseType to request if needed
+    // Add responseType to request if needed
     if (config.responseType) {
       try {
         request.responseType = config.responseType;
@@ -594,7 +594,7 @@ function InterceptorManager() {
 }
 
 /**
- * Manage a new interceptor to the stack
+ * Add a new interceptor to the stack
  *
  * @param {Function} fulfilled The function to handle `then` for a `Promise`
  * @param {Function} rejected The function to handle `reject` for a `Promise`
@@ -3897,7 +3897,7 @@ module.exports = {
       return this;
     }
 
-    // Manage methods to `Hash`.
+    // Add methods to `Hash`.
     Hash.prototype.clear = hashClear;
     Hash.prototype['delete'] = hashDelete;
     Hash.prototype.get = hashGet;
@@ -4014,7 +4014,7 @@ module.exports = {
       return this;
     }
 
-    // Manage methods to `ListCache`.
+    // Add methods to `ListCache`.
     ListCache.prototype.clear = listCacheClear;
     ListCache.prototype['delete'] = listCacheDelete;
     ListCache.prototype.get = listCacheGet;
@@ -4117,7 +4117,7 @@ module.exports = {
       return this;
     }
 
-    // Manage methods to `MapCache`.
+    // Add methods to `MapCache`.
     MapCache.prototype.clear = mapCacheClear;
     MapCache.prototype['delete'] = mapCacheDelete;
     MapCache.prototype.get = mapCacheGet;
@@ -4172,7 +4172,7 @@ module.exports = {
       return this.__data__.has(value);
     }
 
-    // Manage methods to `SetCache`.
+    // Add methods to `SetCache`.
     SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
     SetCache.prototype.has = setCacheHas;
 
@@ -4271,7 +4271,7 @@ module.exports = {
       return this;
     }
 
-    // Manage methods to `Stack`.
+    // Add methods to `Stack`.
     Stack.prototype.clear = stackClear;
     Stack.prototype['delete'] = stackDelete;
     Stack.prototype.get = stackGet;
@@ -8079,7 +8079,7 @@ module.exports = {
       var length = array.length,
           result = new array.constructor(length);
 
-      // Manage properties assigned by `RegExp#exec`.
+      // Add properties assigned by `RegExp#exec`.
       if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
         result.index = array.index;
         result.input = array.input;
@@ -18478,7 +18478,7 @@ module.exports = {
 
     /*------------------------------------------------------------------------*/
 
-    // Manage methods that return wrapped values in chain sequences.
+    // Add methods that return wrapped values in chain sequences.
     lodash.after = after;
     lodash.ary = ary;
     lodash.assign = assign;
@@ -18629,18 +18629,18 @@ module.exports = {
     lodash.zipObjectDeep = zipObjectDeep;
     lodash.zipWith = zipWith;
 
-    // Manage aliases.
+    // Add aliases.
     lodash.entries = toPairs;
     lodash.entriesIn = toPairsIn;
     lodash.extend = assignIn;
     lodash.extendWith = assignInWith;
 
-    // Manage methods to `lodash.prototype`.
+    // Add methods to `lodash.prototype`.
     mixin(lodash, lodash);
 
     /*------------------------------------------------------------------------*/
 
-    // Manage methods that return unwrapped values in chain sequences.
+    // Add methods that return unwrapped values in chain sequences.
     lodash.add = add;
     lodash.attempt = attempt;
     lodash.camelCase = camelCase;
@@ -18791,7 +18791,7 @@ module.exports = {
     lodash.upperCase = upperCase;
     lodash.upperFirst = upperFirst;
 
-    // Manage aliases.
+    // Add aliases.
     lodash.each = forEach;
     lodash.eachRight = forEachRight;
     lodash.first = head;
@@ -18822,7 +18822,7 @@ module.exports = {
       lodash[methodName].placeholder = lodash;
     });
 
-    // Manage `LazyWrapper` methods for `_.drop` and `_.take` variants.
+    // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
     arrayEach(['drop', 'take'], function(methodName, index) {
       LazyWrapper.prototype[methodName] = function(n) {
         n = n === undefined ? 1 : nativeMax(toInteger(n), 0);
@@ -18847,7 +18847,7 @@ module.exports = {
       };
     });
 
-    // Manage `LazyWrapper` methods that accept an `iteratee` value.
+    // Add `LazyWrapper` methods that accept an `iteratee` value.
     arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
       var type = index + 1,
           isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
@@ -18863,7 +18863,7 @@ module.exports = {
       };
     });
 
-    // Manage `LazyWrapper` methods for `_.head` and `_.last`.
+    // Add `LazyWrapper` methods for `_.head` and `_.last`.
     arrayEach(['head', 'last'], function(methodName, index) {
       var takeName = 'take' + (index ? 'Right' : '');
 
@@ -18872,7 +18872,7 @@ module.exports = {
       };
     });
 
-    // Manage `LazyWrapper` methods for `_.initial` and `_.tail`.
+    // Add `LazyWrapper` methods for `_.initial` and `_.tail`.
     arrayEach(['initial', 'tail'], function(methodName, index) {
       var dropName = 'drop' + (index ? '' : 'Right');
 
@@ -18933,7 +18933,7 @@ module.exports = {
       return this.take(MAX_ARRAY_LENGTH);
     };
 
-    // Manage `LazyWrapper` methods to `lodash.prototype`.
+    // Add `LazyWrapper` methods to `lodash.prototype`.
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName),
           isTaker = /^(?:head|last)$/.test(methodName),
@@ -18978,7 +18978,7 @@ module.exports = {
       };
     });
 
-    // Manage `Array` methods to `lodash.prototype`.
+    // Add `Array` methods to `lodash.prototype`.
     arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function(methodName) {
       var func = arrayProto[methodName],
           chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
@@ -19013,12 +19013,12 @@ module.exports = {
       'func': undefined
     }];
 
-    // Manage methods to `LazyWrapper`.
+    // Add methods to `LazyWrapper`.
     LazyWrapper.prototype.clone = lazyClone;
     LazyWrapper.prototype.reverse = lazyReverse;
     LazyWrapper.prototype.value = lazyValue;
 
-    // Manage chain sequence methods to the `lodash` wrapper.
+    // Add chain sequence methods to the `lodash` wrapper.
     lodash.prototype.at = wrapperAt;
     lodash.prototype.chain = wrapperChain;
     lodash.prototype.commit = wrapperCommit;
@@ -19027,7 +19027,7 @@ module.exports = {
     lodash.prototype.reverse = wrapperReverse;
     lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
 
-    // Manage lazy aliases.
+    // Add lazy aliases.
     lodash.prototype.first = lodash.prototype.head;
 
     if (symIterator) {
@@ -19384,8 +19384,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\inventory-manager\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\inventory-manager\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\inventory-manager\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventory-manager\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

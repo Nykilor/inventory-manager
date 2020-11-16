@@ -20,19 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0be99bd-3ba7-40aa-a3f3-db5c40d8a87f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Jetstream/AddTeamMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Jetstream/AddTeamMember.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Item/ItemCategory/Add.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Item/ItemCategory/Manage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Item/SlideOverEditItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Item/SlideOverEditItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Item/ItemCategory/Manage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Item/ItemCategory/Manage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/item/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/item/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/item/item-category/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/item/item-category/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/item/slide-over-item-edit-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/item/slide-over-item-edit-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile/two-factor-authentication-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/two-factor-authentication-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/teams/team-member-manager.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/teams/team-member-manager.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="81fbb4e2-ccf8-464e-92e9-1c6e061d57f9" name="Revert &quot;Controller phpdoc updating and small changes to code.&quot;" comment="Revert &quot;Controller phpdoc updating and small changes to code.&quot;&#10;&#10;This reverts commit 1bfcbe60" />
     <option name="SHOW_DIALOG" value="false" />
@@ -169,6 +165,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1kEaVEiVjobXz6kMJ8cQb5gqWJr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
