@@ -22,7 +22,7 @@ class Manage extends Component
     public function updatedNewCategoryId($value)
     {
         if($value == 0) return;
-        $result = $this->validateOnly("newCategoryId", [
+        $this->validateOnly("newCategoryId", [
             'newCategoryId' => ['numeric', 'bail', 'exists:\App\Models\Category,id', 'in_array:userAvailableCategoriesIdArray.*']
         ]);
         $item_category_model = new ItemCategory();
@@ -30,12 +30,13 @@ class Manage extends Component
         $item_category_model->item_id = $this->itemId;
         $item_category_model->save();
         $this->itemCategories[] = $item_category_model;
+        $this->newCategoryId = 0;
         $this->setUserAvailableCategoriesParams();
     }
 
     public function render()
     {
-        return view('livewire.item.item-category.add');
+        return view('livewire.item.item-category.manage');
     }
 
     public function removeItemCategory($id)
@@ -57,8 +58,13 @@ class Manage extends Component
     {
         $user = Auth::user();
         //We remove the $itemCategories that we already have from teh available so we don't get duplicate values
-        $this->userAvailableCategories = $user->getUserCategoryAccess('update', false)->diffKeys($this->itemCategories);
-        //dd($this->userAvailableCategories, $user->getUserCategoryAccess('update', false));
+        $itemCategoriesIdArray = $this->itemCategories->pluck('category_id')->toArray();
+        $this->userAvailableCategories = $user->getUserCategoryAccess('update', false)->filter(function($value) use($itemCategoriesIdArray) {
+            if(!in_array($value->id, $itemCategoriesIdArray)) {
+               return true;
+           }
+        });
+
         $this->userAvailableCategoriesIdArray = $this->userAvailableCategories->pluck('id')->toArray();
     }
 }
